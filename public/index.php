@@ -8,14 +8,7 @@ require_once BASE_DIR . '/vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createUnsafeImmutable(BASE_DIR);
 $dotenv->load();
 try {
-
-    $pdo = new PDO(
-        'mysql:host=db;dbname=autopark',
-        Config::get('db.user'),
-        Config::get('db.password')
-    );
-
-    dd($pdo);
+    dd(\Core\Db::connect());
 } catch (PDOException $exception) {
     dd('Exception', $exception->getMessage());
 }

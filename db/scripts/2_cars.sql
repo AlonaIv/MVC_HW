@@ -1,0 +1,10 @@
+CREATE TABLE cars
+(
+    id      BIGINT PRIMARY KEY AUTO_INCREMENT,
+    park_id INT,
+    model   VARCHAR(50) NOT NULL,
+    year YEAR NOT NULL,
+    price   FLOAT(11) UNSIGNED DEFAULT 0,
+
+    FOREIGN KEY (park_id) REFERENCES parks (id) ON DELETE SET NULL
+);
