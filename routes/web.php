@@ -1,34 +1,37 @@
 <?php
-// /
-// /login
-// /dashboard
 
-//$router->add('', [
-//    'controller' => HomeController::class,
-//    'action' => 'index',
-//    'method' => 'GET'
-//]);
-// /parks - index
-// /parks/4 - show
-// /parks/4/edit - edit
-// /parks/4/update - update
-$router->add('parks/{id:\d+}/show', [
-    'controller' => \App\Controllers\ParksController::class,
-    'action' => 'show',
+$router->add('login', [
+    'controller' => \App\Controllers\AuthController::class,
+    'action' => 'login',
     'method' => 'GET'
 ]);
 
-$router->add('parks/{id:\d+}/cars/{car_id:\d+}/show', [
-    'controller' => \App\Controllers\ParksController::class,
-    'action' => 'show',
+$router->add('register', [
+    'controller' => \App\Controllers\AuthController::class,
+    'action' => 'register',
     'method' => 'GET'
 ]);
 
-//$router->add('parks/{slug:\w+}/update', [
-//    'controller' => 'Controller',
-//    'action' => 'update',
-//    'method' => 'POST'
-//]);
-// /parks/create - create
-// /parks/store - store
-// /parks/4/destroy - delete
+$router->add('auth/signup', [
+    'controller' => \App\Controllers\AuthController::class,
+    'action' => 'signup',
+    'method' => 'POST'
+]);
+
+$router->add('auth/verify', [
+    'controller' => \App\Controllers\AuthController::class,
+    'action' => 'verify',
+    'method' => 'POST'
+]);
+
+$router->add('admin/dashboard', [
+    'controller' => \App\Controllers\Admin\DashboardController::class,
+    'action' => 'index',
+    'method' => 'GET'
+]);
+
+$router->add('', [
+    'controller' => \App\Controllers\HomeController::class,
+    'action' => 'index',
+    'method' => 'GET'
+]);

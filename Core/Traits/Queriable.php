@@ -88,4 +88,15 @@ trait Queriable
         }
         return false;
     }
+
+    static function findBy(string $column, $value)
+    {
+        $query = "SELECT * FROM " . static::$tableName . " WHERE {$column}=:{$column}";
+
+        $query = Db::connect()->prepare($query);
+        $query->bindParam($column, $value);
+        $query->execute();
+
+        return $query->fetchObject(static::class);
+    }
 }

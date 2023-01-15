@@ -28,6 +28,13 @@ class Router
 //        d($this->routes);
     }
 
+    /**
+     * main url processing path. Check url, controller, action and execute
+     *
+     * @param string $url
+     * @return void
+     * @throws \Exception
+     */
     public function dispatch(string $url)
     {
         $url = trim($url, '/');
@@ -39,13 +46,11 @@ class Router
             $this->checkRequestMethod();
             $controller = $this->getController();
             $action = $this->getAction($controller);
-            d($this->params, $controller, $action);
+//            d($this->params, $controller, $action);
 
             if ($controller->before($action)) {
                 call_user_func_array([$controller, $action], $this->params);
                 $controller->after($action);
-            } else {
-                d('error');
             }
         }
 
@@ -72,6 +77,11 @@ class Router
         return $action;
     }
 
+    /**
+     * check if input method is the same as route params method
+     * @return void
+     * @throws \Exception
+     */
     protected function checkRequestMethod()
     {
         if (array_key_exists('method', $this->params)) {
